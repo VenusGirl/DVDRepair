@@ -49,7 +49,7 @@ Func _GetProgramVersion($iFlag = 1)
 	Local $sReturn = ""
 
 	If @Compiled Then
-		_GetProgramVersionFromFile(@ScriptFullPath, $iFlag)
+		$sReturn = _GetProgramVersionFromFile(@ScriptFullPath, $iFlag)
 		If @error Then Return SetError(1, 0, 0)
 	Else
 		$sReturn = _AutoIt3Script_GetVersion(@ScriptFullPath, $iFlag)
@@ -161,6 +161,7 @@ Func _SoftwareUpdateCheck()
 	If $iBytesSize = $iUpdateFileSize Then
 
 		Local $iLocalBuild = Number(_GetProgramVersion(4))
+		; MsgBox(0, "", $iLocalBuild)
 		Local $iRemoteBuild = IniRead($sLocalFile, "Update", "LatestBuild", $iLocalBuild)
 		$g_ReBarUpdateURL = IniRead($sLocalFile, "Update", "UpdateURL", $g_ReBarAboutHome)
 
