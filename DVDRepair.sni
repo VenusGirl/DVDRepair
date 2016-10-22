@@ -16,7 +16,7 @@ SupportURL = http://www.rizonesoft.com
 ContactURL = http://www.rizonesoft.com
 
 [Update]
-UpdateURL = http://www.rizonesoft.com
+UpdateURL = http://www.rizonesoft.com/downloads/dvd-drive-repair/
 
 [DocumentFiles]
 Changes.tpl = Changes.txt
@@ -50,18 +50,18 @@ ScriptPath=D:\RizonesoftSDK\Concrete\DVDRepair
 ScriptFullPath=D:\RizonesoftSDK\Concrete\DVDRepair\DVDRepair.au3
 ProgramName=DVD Drive Repair
 ProgramShortName=DVDRepair
-ProgramVersion=1.0.2.553
+ProgramVersion=1.0.2.633
 ProgramMajor=1
 ProgramVersionMaintenance=2
-ProgramVersionBuild=553
+ProgramVersionBuild=633
 ProgramDescription=Repair unrecognised or missing DVD Drive
-DistributionPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\553
-DistributionPortableName=DVDRepair_553
-DistributionPortablePath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\553\DVDRepair_553
-DistributionPathSource=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\553\DVDRepair_553_Source
+DistributionPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\633
+DistributionPortableName=DVDRepair_633
+DistributionPortablePath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\633\DVDRepair_633
+DistributionPathSource=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\633\DVDRepair_633_Source
 OutputFile=DVDRepair.exe
 OutputFilePath=D:\RizonesoftSDK\Concrete\DVDRepair\DVDRepair.exe
 OutputFile64Bit=DVDRepair_X64.exe
 OutputFile64BitPath=D:\RizonesoftSDK\Concrete\DVDRepair\DVDRepair_X64.exe
-InstallScriptPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\553\DVDRepair_553_Setup.iss
-InstallOutputPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\553\DVDRepair_553_Setup.exe
+InstallScriptPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\633\DVDRepair_633_Setup.iss
+InstallOutputPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\633\DVDRepair_633_Setup.exe

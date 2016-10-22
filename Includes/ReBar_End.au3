@@ -33,7 +33,12 @@ If Not IsDeclared("iEventError") Then Global $iEventError
 If Not IsDeclared("oErrorHandler") Then Global $oErrorHandler
 
 Func _ShutdownProgram()
+
+	Local $iPID = ProcessExists(@ScriptName)
+	If $iPID Then ProcessClose($iPID)
+
 	Exit($g_ReBarExitCode)
+
 EndFunc   ;==>_CloseProgram
 
 
@@ -211,6 +216,7 @@ Func _CloseAboutDlg()
 	GUIDelete($g_ReBarAboutGui)
 	WinSetTrans($g_ReBarCoreGui, Default, 255)
 	GUISetState(@SW_ENABLE, $g_ReBarCoreGui)
+	WinActivate($g_ReBarCoreGui)
 
 EndFunc   ;==>_CloseAboutDlg
 
@@ -228,6 +234,6 @@ Func _OnReBarExit()
 	;	$EXITCLOSE_BYLOGOFF - Closed by user Logoff
 	;	$EXITCLOSE_BYSUTDOWN - Closed by Windows Shutdown
 
-	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "ExitMethod", @exitMethod)
+	; IniWrite($g_ReBarPathIni, $g_ReBarShortName, "ExitMethod", @exitMethod)
 
 EndFunc   ;==>_ReBarExit

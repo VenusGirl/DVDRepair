@@ -38,49 +38,45 @@ If Not IsDeclared("g_ImgStatus") Then Global $g_ImgStatus = ""
 ; ===============================================================================================================================
 Func _LoggingInitialize()
 
-	If $g_ReBarLogEnabled Then
+	_GUICtrlListView_SetExtendedListViewStyle($g_ListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
+		$LVS_EX_SUBITEMIMAGES, $LVS_EX_INFOTIP, _
+		$WS_EX_CLIENTEDGE))
+	_GUICtrlListView_AddColumn($g_ListStatus, "", 800)
+	_WinAPI_SetWindowTheme(GUICtrlGetHandle($g_ListStatus), "Explorer")
 
-		_GUICtrlListView_SetExtendedListViewStyle($g_ListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
-			$LVS_EX_SUBITEMIMAGES, $LVS_EX_INFOTIP, _
-			$WS_EX_CLIENTEDGE))
-		_GUICtrlListView_AddColumn($g_ListStatus, "", 800)
-		_WinAPI_SetWindowTheme(GUICtrlGetHandle($g_ListStatus), "Explorer")
+	$g_ImgStatus = _GUIImageList_Create(16, 16, 5, 1, 8, 8)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -103)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -130)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -122)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -134)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -133)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -135)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -136)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -138)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -999)
+	_GUICtrlListView_SetImageList($g_ListStatus, $g_ImgStatus, 1)
 
-		$g_ImgStatus = _GUIImageList_Create(16, 16, 5, 1, 8, 8)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -103)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -130)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -122)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -134)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -133)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -135)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -136)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -138)
-		_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -999)
-		_GUICtrlListView_SetImageList($g_ListStatus, $g_ImgStatus, 1)
+	; When run from a CD, we cannot perform logging.
+	If DriveGetType(StringLeft(@ScriptFullPath, 3)) = "CDROM" Then
+		$g_ReBarLogFileWrite = 0
+	Else
 
-		; When run from a CD, we cannot perform logging.
-		If DriveGetType(StringLeft(@ScriptFullPath, 3)) = "CDROM" Then
-			$g_ReBarLogFileWrite = 0
+		If BitAND(__LoggingDirCreate(), __LoggingFileReset()) Then
+
+			; Log file and directory seems valid. Enable logging.
+			$g_ReBarLogFileWrite = 1
+
+			_LoggingWrite("", False)
+			_LoggingWrite("", False)
+			_LoggingWrite("                                            ./", False)
+			_LoggingWrite("                                          (o o)", False)
+			_LoggingWrite("--------------------------------------oOOo-(-)-oOOo--------------------------------------", False)
+			_LoggingWrite("", False)
+			_LoggingGetSystemInfo()
+
 		Else
-
-			If BitAND(__LoggingDirCreate(), __LoggingFileReset()) Then
-
-				; Log file and directory seems valid. Enable logging.
-				$g_ReBarLogFileWrite = 1
-
-				_LoggingWrite("", False)
-				_LoggingWrite("", False)
-				_LoggingWrite("                                            ./", False)
-				_LoggingWrite("                                          (o o)", False)
-				_LoggingWrite("--------------------------------------oOOo-(-)-oOOo--------------------------------------", False)
-				_LoggingWrite("", False)
-				_LoggingGetSystemInfo()
-
-			Else
-				; Log file could not be created. Disable logging.
-				$g_ReBarLogFileWrite = 0
-			EndIf
-
+			; Log file could not be created. Disable logging.
+			$g_ReBarLogFileWrite = 0
 		EndIf
 
 	EndIf
@@ -90,100 +86,160 @@ EndFunc
 
 Func _StartLogging($sMessage)
 
-	If $g_ReBarLogEnabled Then
-		_ClearLogging()
-		_EditLoggingWrite($sMessage)
-		_LoggingWrite("------------------------------------------------------------------------------------------", False)
-	EndIf
+	_ClearLogging()
+	_EditLoggingWrite($sMessage)
+	_LoggingWrite("------------------------------------------------------------------------------------------", False)
 
 EndFunc
 
 
 Func _EndLogging()
 
-	If $g_ReBarLogEnabled Then
-		_EditLoggingWrite("Finished!")
-		_LoggingWrite("------------------------------------------------------------------------------------------", False)
-	EndIf
+	_EditLoggingWrite("Finished!")
+	_LoggingWrite("------------------------------------------------------------------------------------------", False)
 
 EndFunc
 
 
 Func _ClearLogging()
 
-	If $g_ReBarLogEnabled Then
-
-		_GUICtrlListView_BeginUpdate($g_ListStatus)
-		_GUICtrlListView_DeleteAllItems($g_ListStatus)
-		_GUICtrlListView_EndUpdate($g_ListStatus)
-
-	EndIf
+	_GUICtrlListView_BeginUpdate($g_ListStatus)
+	_GUICtrlListView_DeleteAllItems($g_ListStatus)
+	_GUICtrlListView_EndUpdate($g_ListStatus)
 
 EndFunc
 
 
 Func _EditLoggingWrite($sMessage = "", $bTimePrex = True, $UseListBox = True)
 
-	If $g_ReBarLogEnabled Then
+	Local $sTimeStamp = ""
 
-		Local $sTimeStamp = ""
+	If Not IsDeclared("g_EditInfo") Then Global $g_EditInfo
 
-		If Not IsDeclared("EDIT_INFO") Then Local $EDIT_INFO
+	GUICtrlSetState($g_ListStatus, $GUI_SHOW)
+	GUICtrlSetState($g_EditInfo, $GUI_HIDE)
 
-		GUICtrlSetState($g_ListStatus, $GUI_SHOW)
-		GUICtrlSetState($EDIT_INFO, $GUI_HIDE)
+	If $bTimePrex Then
+		$sTimeStamp = "[" & @HOUR & ":" & @MIN & ":" & @SEC & ":" & @MSEC & "] "
+	EndIf
 
-		If $bTimePrex Then
-			$sTimeStamp = "[" & @HOUR & ":" & @MIN & ":" & @SEC & ":" & @MSEC & "] "
+	If $UseListBox Then
+
+		Local $iImage = 0
+
+		If _ValidateError($sMessage) Then
+			$iImage = 2
+		ElseIf _ValidateSuccess($sMessage) Then
+			$iImage = 1
+		ElseIf StringLeft($sMessage, 9) = "Finished!" Then
+			Switch @MON
+				Case 10
+					$iImage = 4
+				Case 12
+					$iImage = 5
+				Case Else
+					$iImage = 3
+			EndSwitch
+		ElseIf StringLeft($sMessage, 1) = "^" Or _
+			_ValidateWarning($sMessage) Then
+			$iImage = 6
+		ElseIf _ValidateFolder($sMessage) Then
+			$iImage = 8
+		ElseIf StringStripWS($sMessage, 8) = "" Then
+			$iImage = 10
 		EndIf
+		_GUICtrlListView_AddItem($g_ListStatus, Chr(32) & $sMessage, $iImage)
+		_GUICtrlListView_SetItemFocused($g_ListStatus, _GUICtrlListView_GetItemCount($g_ListStatus) - 1)
+		_GUICtrlListView_EnsureVisible($g_ListStatus, _GUICtrlListView_GetItemCount($g_ListStatus) - 1)
 
-		If $UseListBox Then
+	Else
 
-			Local $iImage = 0
-
-			If StringInStr($sMessage, "error") Then
-				$iImage = 2
-			ElseIf StringInStr($sMessage, "Response Received") Or _
-				StringInStr($sMessage, "success") Then
-				$iImage = 1
-			ElseIf StringLeft($sMessage, 9) = "Finished!" Then
-				Switch @MON
-					Case 10
-						$iImage = 4
-					Case 12
-						$iImage = 5
-					Case Else
-						$iImage = 3
-				EndSwitch
-			ElseIf StringLeft($sMessage, 1) = "^" Then
-				$iImage = 6
-			ElseIf StringStripWS($sMessage, 8) = "" Then
-				$iImage = 8
-			EndIf
-			_GUICtrlListView_AddItem($g_ListStatus, Chr(32) & $sMessage, $iImage)
-			_GUICtrlListView_SetItemFocused($g_ListStatus, _GUICtrlListView_GetItemCount($g_ListStatus) - 1)
-			_GUICtrlListView_EnsureVisible($g_ListStatus, _GUICtrlListView_GetItemCount($g_ListStatus) - 1)
-
-		Else
-
-			_GUICtrlListView_AddItem($g_ListStatus, Chr(32) & $sMessage, $iImage)
-			_GUICtrlListView_SetItemFocused($g_ListStatus, _GUICtrlListView_GetItemCount($g_ListStatus) - 1)
-			_GUICtrlListView_EnsureVisible($g_ListStatus, _GUICtrlListView_GetItemCount($g_ListStatus) - 1)
-
-		EndIf
-
-		_LoggingWrite($sMessage, $bTimePrex)
+		_GUICtrlListView_AddItem($g_ListStatus, Chr(32) & $sMessage, $iImage)
+		_GUICtrlListView_SetItemFocused($g_ListStatus, _GUICtrlListView_GetItemCount($g_ListStatus) - 1)
+		_GUICtrlListView_EnsureVisible($g_ListStatus, _GUICtrlListView_GetItemCount($g_ListStatus) - 1)
 
 	EndIf
+
+	_LoggingWrite($sMessage, $bTimePrex)
+
+EndFunc
+
+
+Func _ValidateSuccess($sMessage)
+
+	Local $sSuccessStrings = "success|Response Received|Successfully|OK!|Registration succeeded|Initiated"
+	Local $aSuccessStrings = StringSplit($sSuccessStrings, "|")
+
+	For $s = 1 To $aSuccessStrings[0]
+		If StringInStr($sMessage, $aSuccessStrings[$s]) Then
+			Return True
+		EndIf
+	Next
+
+EndFunc
+
+
+Func _ValidateError($sMessage)
+
+	Local $sErrorStrings = "error:|error |failed|1 error"
+	Local $aErrorStrings = StringSplit($sErrorStrings, "|")
+
+	For $s = 1 To $aErrorStrings[0]
+		If StringInStr($sMessage, $aErrorStrings[$s]) Then
+			Return True
+		EndIf
+	Next
+
+EndFunc
+
+
+Func _ValidateWarning($sMessage)
+
+	Local $sWarningStrings = "Access is denied|No operation can be performed"
+	Local $aWarningStrings = StringSplit($sWarningStrings, "|")
+
+	For $s = 1 To $aWarningStrings[0]
+		If StringInStr($sMessage, $aWarningStrings[$s]) Then
+			Return True
+		EndIf
+	Next
+
+EndFunc
+
+
+Func _ValidateFolder($sMessage)
+
+	Local $sFolderStrings = "Saving [|Deleting [|Removing [|Clearing ["
+	Local $aFolderStrings = StringSplit($sFolderStrings, "|")
+
+	For $s = 1 To $aFolderStrings[0]
+		If StringInStr($sMessage, $aFolderStrings[$s]) Then
+			Return True
+		EndIf
+	Next
+
+EndFunc
+
+
+Func _ValidateRegistry($sMessage)
+
+	Local $sRegistryStrings = "RegSvr32.exe: ["
+	Local $aRegistryStrings = StringSplit($sRegistryStrings, "|")
+
+	For $s = 1 To $aRegistryStrings[0]
+		If StringInStr($sMessage, $aRegistryStrings[$s]) Then
+			Return True
+		EndIf
+	Next
 
 EndFunc
 
 
 Func _LoggingWrite($sData = "", $bTimePrex = True)
 
-	If $g_ReBarLogEnabled Then
+	If $g_ReBarLogEnabled = 1 Then
 
-		If __LoggingFileReset() And $g_ReBarLogFileWrite Then
+		If __LoggingFileReset() And $g_ReBarLogFileWrite = 1 Then
 
 			Local $hLogOpen = FileOpen($g_ReBarLogPath, $FO_APPEND)
 			If $hLogOpen = -1 Then
@@ -274,6 +330,8 @@ EndFunc
 ; ===============================================================================================================================
 Func __LoggingFileCreate()
 
+	If $g_ReBarLogEnabled = 1 Then
+
 		If FileExists($g_ReBarLogPath) Then
 			Return 1
 		Else
@@ -286,6 +344,8 @@ Func __LoggingFileCreate()
 		EndIf
 
 		Return 0
+
+	EndIf
 
 EndFunc
 

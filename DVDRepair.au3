@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=DVD Drive Repair								 	;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Repair unrecognised or missing DVD Drive      	;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=1.0.2.554
+	#AutoIt3Wrapper_Res_Fileversion=1.0.2.634
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 			;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 			;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 			;~ (Y/N) Compile for high DPI. Default=N
@@ -204,22 +204,10 @@ Global $g_ChkResetAutorun, $g_ChkProtectAutorun, $g_BtnRepair, $g_InpStatus
 Global $g_ChkResetMachine, $g_ChkProtectMachine
 Global $g_SetResetAutorun = 0, $g_SetProtectAutorun = 0
 Global $g_SetResetMachine = 0, $g_SetProtectMachine = 0
-Global $g_
 ;===============================================================================================================
 
-_SetWorkingDirectories()
-_LoggingInitialize()
-_CheckResources($g_ReBarResFugue)
-_CheckResources($g_ReBarResDoors)
 
-
-If @OSArch = "X64" And _AutoItGetArchitecture() = "64" Then
-
-	$g_SetResetMachine = IniRead($g_ReBarPathIni, "Options", "ResetAutorunMachine", 1)
-	$g_SetProtectMachine = IniRead($g_ReBarPathIni, "Options", "ProtectAutorunMachine", 1)
-	_StartCoreGUI()
-
-Else
+If Not @AutoItX64 And @OSArch = "X64" Then
 
 	If FileExists(@ScriptDir & "\DVDRepair_x64.exe") Then
 		ShellExecute(@ScriptDir & "\DVDRepair_x64.exe")
@@ -231,8 +219,19 @@ Else
 				"with your Windows version. Please download " & _
 				$g_ReBarProgName & " 64 Bit from " & $g_ReBarAboutHome, 60)
 		ShellExecute($g_ReBarAboutHome)
+		Exit
 
 	EndIf
+
+Else
+
+	$g_SetResetMachine = IniRead($g_ReBarPathIni, "Options", "ResetAutorunMachine", 1)
+	$g_SetProtectMachine = IniRead($g_ReBarPathIni, "Options", "ProtectAutorunMachine", 1)
+	_SetWorkingDirectories()
+	_LoggingInitialize()
+	_CheckResources($g_ReBarResFugue)
+	_CheckResources($g_ReBarResDoors)
+	_StartCoreGUI()
 
 EndIf
 
@@ -242,7 +241,6 @@ Func _StartCoreGUI()
 	Local $lblSystemProtect, $lblFirmwareHQ, $btnClose
 
 	$g_ReBarCoreGui = GUICreate($g_ReBarGuiTitle, $g_ReBarFormWidth, $g_ReBarFormHeight, -1, -1, -1)
-	GUIRegisterMsg($WM_GETMINMAXINFO, "WM_GETMINMAXINFO")
 	GUISetFont($g_ReBarFontSize, 400, -1, $g_ReBarFontName, $g_ReBarCoreGui, $CLEARTYPE_QUALITY)
 
 	If Not @Compiled Then
@@ -295,13 +293,12 @@ Func _StartCoreGUI()
 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -135)
 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -136)
 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -138)
+	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -159)
 	_GUIImageList_AddIcon($g_ImgStatus, $g_ReBarResFugue, -999)
 	_GUICtrlListView_SetImageList($g_ListStatus, $g_ImgStatus, 1)
 
 	GUICtrlSetFont($g_ListStatus, 9, -1, -1, "Courier New")
 	GUICtrlSetColor($g_ListStatus, 0x222222)
-
-	$g_ReBarUpdateLabel = GUICtrlCreateLabel("", 10, 400, 430, 20)
 
 	GUICtrlSetOnEvent($g_BtnRepair, "_RepairDVDDrive")
 	GUICtrlSetOnEvent($g_ReBarAboutButton, "_ShowAboutDialog")
@@ -320,12 +317,15 @@ Func _StartCoreGUI()
 	_SetOptions()
 
 	GUISetState(@SW_SHOW, $g_ReBarCoreGui)
-	_SoftwareUpdateCheck()
-
 	GUISetOnEvent($GUI_EVENT_CLOSE, "_ShutdownProgram", $g_ReBarCoreGui)
 
+	; $g_ReBarUpdateRemote = $g_ReBarUpdateURLBase & "\Debug.ru"
+	; $g_ReBarUpdateLocal = $g_ReBarCachePath & "\Debug.ru"
+	AdlibRegister("_OnMainIconHover", 50)
+	_SoftwareUpdateCheck()
+
 	While 1
-		_OnMainIconHover()
+		; _OnMainIconHover()
 		Sleep(55)
 	WEnd
 
@@ -398,6 +398,7 @@ Func _RepairDVDDrive()
 ;~ 		"before continuing." & @CRLF & @CRLF & "Would you like to continue with the repair?") == 6 Then
 
 	_StartLogging("Repairing DVD Drive ...")
+	_ConfigureWindowsService("ShellHWDetection", 2)
 	_RunCommand("sc config ShellHWDetection start= auto obj= LocalSystem")
 	_RunCommand("net start ShellHWDetection")
 

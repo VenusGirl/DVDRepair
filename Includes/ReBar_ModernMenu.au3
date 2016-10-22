@@ -1962,7 +1962,7 @@ Func _GUICtrlCreateODTopMenu($sText, $nParentGUI)
 		If @error Or $hMenu[0]=0 Then Return SetError(1,0,0)
 ;~ 		GetMenuItemInfo(GUICtrlGetHandle($nMenu)
 		$arMenuItems[$nIdx][0] = $nMenu
-		$arMenuItems[$nIdx][1] = $sText
+		$arMenuItems[$nIdx][1] = StringStripWS($sText, 8)
 		$arMenuItems[$nIdx][2] = -1
 		$arMenuItems[$nIdx][3] = "TOP"
 		$arMenuItems[$nIdx][4] = 0

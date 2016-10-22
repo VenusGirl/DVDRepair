@@ -75,10 +75,16 @@ Func _RunCommand($sCommand)
 		If @error Then
 			ExitLoop
 		EndIf
-		If __HasOutput($sOutput) Then
-			_EditLoggingWrite(StringStripWS(__FormatRunOutput($sOutput), $STR_STRIPLEADING + $STR_STRIPTRAILING))
-			Sleep(50)
-		EndIf
+
+		Local $aOutput = StringSplit($sOutput, @CRLF)
+		For $x = 1 To $aOutput[0]
+			If __HasOutput($aOutput[$x]) Then
+				_EditLoggingWrite(StringStripWS(__FormatRunOutput($aOutput[$x]), $STR_STRIPLEADING + $STR_STRIPTRAILING))
+				Sleep(50)
+			EndIf
+		Next
+
+
 	WEnd
 
 EndFunc
@@ -100,8 +106,19 @@ EndFunc
 
 Func __FormatRunOutput($sOutput)
 
-	Local $sReturn = ""
-	$sReturn = StringReplace($sOutput, ".", ". ")
+	Local $sReturn = $sOutput
+	Local $sBadStrings = "Resetting , failed.|Sucessfully"
+	Local $sGoodStrings = "Resetting, failed.|Successfully"
+	Local $aBadStrings = StringSplit($sBadStrings, "|")
+	Local $aGoodStrings = StringSplit($sGoodStrings, "|")
+
+
+	If $aBadStrings[0] = $aGoodStrings[0] Then
+		For $x = 1 To $aBadStrings[0]
+			$sReturn = StringReplace($sReturn, $aBadStrings[$x], $aGoodStrings[$x])
+		Next
+	EndIf
+
 	Return $sReturn
 
 EndFunc

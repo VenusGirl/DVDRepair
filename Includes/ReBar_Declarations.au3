@@ -48,8 +48,8 @@ Global $g_ReBarCachePath = $g_ReBarCacheBase & "\" & $g_ReBarShortName
 ;===============================================================================================================
 ; Update Options
 ;===============================================================================================================
-Global $g_ReBarUpdateLabel
 Global $g_ReBarUpdateURL
+Global $g_ReBarUpdateGUI
 Global $g_ReBarUpdateURLBase = "http://www.rizonesoft.com/update/"
 Global $g_ReBarUpdateRemote = $g_ReBarUpdateURLBase & $g_ReBarShortName & ".ru"
 Global $g_ReBarUpdateLocal = $g_ReBarCachePath & "\" & $g_ReBarShortName & ".ru"
