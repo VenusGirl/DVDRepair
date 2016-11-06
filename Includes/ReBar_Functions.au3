@@ -51,10 +51,9 @@ Func _CheckResources($sResFile)
 	If Not FileExists($sResFile) Then
 
 		If Not IsDeclared("iMsgBoxAnswer") Then Local $iMsgBoxAnswer
-		$iMsgBoxAnswer = MsgBox($MB_OK + $MB_ICONHAND, "Required file missing!", "A required resource file (" & $sResFile & ") " & _
-				"is missing. Although this file is not required for normal operation, " & _
-				"all the pretty icons will be missing. To fix this, " & _
-				"download and reinstall " & $REBAR_PROG_NAME, $REBAR_MSG_TIMEOUT)
+		$iMsgBoxAnswer = MsgBox($MB_OK + $MB_ICONHAND, "Required resources missing!", "A required resource file (" & $sResFile & ") " & _
+				"is missing. This file keeps all the pretty icons. Why somebody would not like pretty icons is beyond me? " & _
+				"What would you do with all this extra space?" & $REBAR_PROG_NAME, $REBAR_MSG_TIMEOUT)
 		Select
 			Case $iMsgBoxAnswer = -1 ;Timeout
 			Case Else ;OK

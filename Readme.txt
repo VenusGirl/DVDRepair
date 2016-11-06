@@ -3,10 +3,10 @@ DVD Drive Repair
 © Rizonesoft. All rights reserved
 http://www.rizonesoft.com
 ==================================================
-Version: 1.0.2.638
-Release Date: 22 October, 2016
+Version: 1.0.2.686
+Release Date: 06 November, 2016
 System Requirements: Windows XP, Vista, 2008, 7, 8, 8.1, 10 
-Disk Space: 2 MB
+Disk Space: 1 MB
 ==================================================
 
 --------------------------------------------------

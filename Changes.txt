@@ -3,6 +3,17 @@ Rizonesoft DVD Drive Repair CHANGES
 ==================================================
 
 --------------------------------------------------
+Version 1.0.2.686 (November 06, 2016)
+--------------------------------------------------
+
+- Updated the ReBar Framework.
+- New Option to disable Autorun reset and Protection.
+- Now saves options on exit.
+- Cut about 1MB from the total size.
+- Minor bug fixes.
+- Minor cosmetic changes.
+
+--------------------------------------------------
 Version 1.0.2.638 (October 22, 2016)
 --------------------------------------------------
 

@@ -34,8 +34,14 @@ If Not IsDeclared("oErrorHandler") Then Global $oErrorHandler
 
 Func _ShutdownProgram()
 
-	Local $iPID = ProcessExists(@ScriptName)
-	If $iPID Then ProcessClose($iPID)
+	_OnCoreClosing()
+	WinSetTrans($g_ReBarCoreGui, Default, 255)
+
+	If $g_ReBarHasTrayIcon Then TraySetState(2)
+	If $g_ReBarSingleton Then
+		Local $iPID = ProcessExists(@ScriptName)
+		If $iPID Then ProcessClose($iPID)
+	EndIf
 
 	Exit($g_ReBarExitCode)
 
@@ -50,7 +56,10 @@ Func _ShowAboutDialog()
 
 	GUICtrlSetState($g_ReBarAboutMenu, $GUI_DISABLE)
 	GUICtrlSetState($g_ReBarAboutButton, $GUI_DISABLE)
+
+	If $g_ReBarHasTrayIcon Then GUICtrlSetState($g_ReBarAboutTray, $GUI_DISABLE)
 	WinSetTrans($g_ReBarCoreGui, Default, 200)
+
 	GUISetState(@SW_DISABLE, $g_ReBarCoreGui)
 
 	Local $abTitle, $abVersion, $abCopyright, $abHome
@@ -60,7 +69,8 @@ Func _ShowAboutDialog()
 
 	$g_ReBarAboutGui = GUICreate("About " & $g_ReBarProgName, 400, 480, -1, -1, BitOR($WS_CAPTION, $WS_POPUPWINDOW), $WS_EX_TOPMOST)
 	GUISetFont($g_ReBarFontSize, 400, 0, $g_ReBarFontName, $g_ReBarAboutGui, 5)
-	GUISetIcon($g_ReBarResFugue, 103)
+	GUISetIcon($g_ReBarResFugue, 103, $g_ReBarAboutGui)
+	GUISetIcon($g_ReBarResDoors, -111, $g_ReBarAboutGui)
 
 	GUISetOnEvent($GUI_EVENT_CLOSE, "_CloseAboutDlg", $g_ReBarAboutGui)
 
@@ -213,6 +223,7 @@ Func _CloseAboutDlg()
 
 	GUICtrlSetState($g_ReBarAboutMenu, $GUI_ENABLE)
 	GUICtrlSetState($g_ReBarAboutButton, $GUI_ENABLE)
+	If $g_ReBarHasTrayIcon Then GUICtrlSetState($g_ReBarAboutTray, $GUI_ENABLE)
 	GUIDelete($g_ReBarAboutGui)
 	WinSetTrans($g_ReBarCoreGui, Default, 255)
 	GUISetState(@SW_ENABLE, $g_ReBarCoreGui)

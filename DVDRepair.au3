@@ -8,20 +8,20 @@
 	;===============================================================================================================
 	; AutoIt3 Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_UseX64=Y										 ;~ (Y/N) Use AutoIt3_x64 or Aut2Exe_x64. Default=N
-	#AutoIt3Wrapper_Run_Debug_Mode=N								 ;~ (Y/N) Run Script with console debugging. Default=N
-	#AutoIt3Wrapper_Run_SciTE_Minimized=Y 							 ;~ (Y/N) Minimize SciTE while script is running. Default=N
-	#AutoIt3Wrapper_Run_SciTE_OutputPane_Minimized=N				 ;~ (Y/N) Minimize SciTE output pane at run time. Default=N
+	#AutoIt3Wrapper_UseX64=Y										;~ (Y/N) Use AutoIt3_x64 or Aut2Exe_x64. Default=N
+	#AutoIt3Wrapper_Run_Debug_Mode=N								;~ (Y/N) Run Script with console debugging. Default=N
+	#AutoIt3Wrapper_Run_SciTE_Minimized=Y 							;~ (Y/N) Minimize SciTE while script is running. Default=N
+	#AutoIt3Wrapper_Run_SciTE_OutputPane_Minimized=N				;~ (Y/N) Minimize SciTE output pane at run time. Default=N
 	;===============================================================================================================
 	; Tidy Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_Tidy=Y										 ;~ (Y/N) Run Tidy before compilation. Default=N
-	#AutoIt3Wrapper_Tidy_Stop_OnError=N								 ;~ (Y/N) Continue when only Warnings. Default=Y
+	#AutoIt3Wrapper_Run_Tidy=Y										;~ (Y/N) Run Tidy before compilation. Default=N
+	#AutoIt3Wrapper_Tidy_Stop_OnError=N								;~ (Y/N) Continue when only Warnings. Default=Y
 	;#Tidy_Parameters= 												;~ Tidy Parameters...see SciTE4AutoIt3 Helpfile for options
 	;===============================================================================================================
 	; AU3Check settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_AU3Check=Y									 ;~ (Y/N) Run au3check before compilation. Default=Y
+	#AutoIt3Wrapper_Run_AU3Check=Y									;~ (Y/N) Run au3check before compilation. Default=Y
 	;#AutoIt3Wrapper_AU3Check_Parameters=							;~ Au3Check parameters...see SciTE4AutoIt3 Helpfile for options
 	;#AutoIt3Wrapper_AU3Check_Stop_OnWarning=						;~ (Y/N) Continue/Stop on Warnings.(Default=N)
 
@@ -40,29 +40,29 @@
 	;===============================================================================================================
 	; Aut2Exe Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Icon=Themes\Icons\DVDRepair.ico					;~ Filename of the Ico file to use for the compiled exe
-	#AutoIt3Wrapper_OutFile_Type=exe								;~ exe=Standalone executable (Default); a3x=Tokenised AutoIt3 code file
-	#AutoIt3Wrapper_OutFile=DVDRepair.exe							;~ Target exe/a3x filename.
-	#AutoIt3Wrapper_OutFile_X64=DVDRepair_X64.exe					;~ Target exe filename for X64 compile.
+	#AutoIt3Wrapper_Icon=Themes\Icons\DVDRepair.ico					 ;~ Filename of the Ico file to use for the compiled exe
+	#AutoIt3Wrapper_OutFile_Type=exe								 ;~ exe=Standalone executable (Default); a3x=Tokenised AutoIt3 code file
+	#AutoIt3Wrapper_OutFile=DVDRepair.exe							 ;~ Target exe/a3x filename.
+	#AutoIt3Wrapper_OutFile_X64=DVDRepair_X64.exe					 ;~ Target exe filename for X64 compile.
 	;#AutoIt3Wrapper_Compression=4									;~ Compression parameter 0-4  0=Low 2=normal 4=High. Default=2
 	;#AutoIt3Wrapper_UseUpx=Y										;~ (Y/N) Compress output program.  Default=Y
 	;#AutoIt3Wrapper_UPX_Parameters=								;~ Override the default settings for UPX.
-	#AutoIt3Wrapper_Change2CUI=N									;~ (Y/N) Change output program to CUI in stead of GUI. Default=N
-	#AutoIt3Wrapper_Compile_both=Y									;~ (Y/N) Compile both X86 and X64 in one run. Default=N
+	#AutoIt3Wrapper_Change2CUI=N									 ;~ (Y/N) Change output program to CUI in stead of GUI. Default=N
+	#AutoIt3Wrapper_Compile_both=Y									 ;~ (Y/N) Compile both X86 and X64 in one run. Default=N
 	;===============================================================================================================
 	; Target Program Resource info
 	;===============================================================================================================
-	#AutoIt3Wrapper_Res_Comment=DVD Drive Repair								 	;~ Comment field
-	#AutoIt3Wrapper_Res_Description=Repair unrecognised or missing DVD Drive      	;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=1.0.2.639
-	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 			;~ (Y/N/P) AutoIncrement FileVersion. Default=N
-	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 			;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
-	#AutoIt3Wrapper_Res_HiDpi=Y                      					 			;~ (Y/N) Compile for high DPI. Default=N
-	#AutoIt3Wrapper_Res_ProductVersion=0             					 			;~ Product Version
-	#AutoIt3Wrapper_Res_Language=2057									 			;~ Resource Language code . Default 2057=English (United Kingdom)
-	#AutoIt3Wrapper_Res_LegalCopyright=© 2016 Rizonesoft				 			;~ Copyright field
-	#AutoIt3Wrapper_res_requestedExecutionLevel=highestAvailable		 			;~ asInvoker, highestAvailable, requireAdministrator or None (remove the trsutInfo section).  Default is the setting from Aut2Exe (asInvoker)
-	#AutoIt3Wrapper_res_Compatibility=Vista,Win7,Win8,Win81,Win10				 	;~ Vista/Windows7/win7/win8/win81 allowed separated by a comma     (Default=Win81)
+	#AutoIt3Wrapper_Res_Comment=DVD Drive Repair								 	 ;~ Comment field
+	#AutoIt3Wrapper_Res_Description=Repair unrecognised or missing DVD Drive      	 ;~ Description field
+	#AutoIt3Wrapper_Res_Fileversion=1.0.2.687
+	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 			 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
+	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 			 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
+	#AutoIt3Wrapper_Res_HiDpi=Y                      					 			 ;~ (Y/N) Compile for high DPI. Default=N
+	#AutoIt3Wrapper_Res_ProductVersion=0             					 			 ;~ Product Version
+	#AutoIt3Wrapper_Res_Language=2057									 			 ;~ Resource Language code . Default 2057=English (United Kingdom)
+	#AutoIt3Wrapper_Res_LegalCopyright=© 2016 Rizonesoft				 			 ;~ Copyright field
+	#AutoIt3Wrapper_res_requestedExecutionLevel=highestAvailable		 			 ;~ asInvoker, highestAvailable, requireAdministrator or None (remove the trsutInfo section).  Default is the setting from Aut2Exe (asInvoker)
+	#AutoIt3Wrapper_res_Compatibility=Vista,Win7,Win8,Win81,Win10				 	 ;~ Vista/Windows7/win7/win8/win81 allowed separated by a comma     (Default=Win81)
 	;#AutoIt3Wrapper_Res_SaveSource=N												;~ (Y/N) Save a copy of the Script_source in the EXE resources. Default=N
 	; If _Res_SaveSource=Y the content of Script_source depends on the _Run_Au3Stripper and #Au3Stripper_parameters directives:
 	;    If _Run_Au3Stripper=Y then
@@ -99,21 +99,21 @@
 	;===============================================================================================================
 	; Tidy Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_Tidy=N										 ;~ (Y/N) Run Tidy before compilation. Default=N
+	#AutoIt3Wrapper_Run_Tidy=N										;~ (Y/N) Run Tidy before compilation. Default=N
 	;#AutoIt3Wrapper_Tidy_Stop_OnError=              				;~ (Y/N) Continue when only Warnings. Default=Y
 	;#Tidy_Parameters=                               				;~ Tidy Parameters...see SciTE4AutoIt3 Helpfile for options
 	;===============================================================================================================
 	; Au3Stripper Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_Au3Stripper=N								 ;~ (Y/N) Run Au3Stripper before compilation. default=N
+	#AutoIt3Wrapper_Run_Au3Stripper=Y								;~ (Y/N) Run Au3Stripper before compilation. default=N
 	;#Au3Stripper_Parameters=										;~ Au3Stripper parameters...see SciTE4AutoIt3 Helpfile for options
 	;#Au3Stripper_Ignore_Variables=
 	;===============================================================================================================
 	; AU3Check settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_AU3Check=Y									 ;~ (Y/N) Run au3check before compilation. Default=Y
+	#AutoIt3Wrapper_Run_AU3Check=Y									;~ (Y/N) Run au3check before compilation. Default=Y
 	;#AutoIt3Wrapper_AU3Check_Parameters=							;~ Au3Check parameters...see SciTE4AutoIt3 Helpfile for options
-	#AutoIt3Wrapper_AU3Check_Stop_OnWarning=Y 						 ;~ (Y/N) Continue/Stop on Warnings.(Default=N)
+	#AutoIt3Wrapper_AU3Check_Stop_OnWarning=Y 						;~ (Y/N) Continue/Stop on Warnings.(Default=N)
 	;===============================================================================================================
 	; Versioning Settings
 	;===============================================================================================================
@@ -201,8 +201,8 @@ Opt("WinWaitDelay", 250) ;~ 250 milliseconds
 ; Declarations
 ;===============================================================================================================
 Global $g_ChkResetAutorun, $g_ChkProtectAutorun, $g_BtnRepair, $g_InpStatus
-Global $g_ChkResetMachine, $g_ChkProtectMachine
-Global $g_SetResetAutorun = 0, $g_SetProtectAutorun = 0
+Global $g_ChkResetMachine, $g_ChkProtectMachine, $g_ChkDoNothing
+Global $g_SetResetAutorun = 0, $g_SetProtectAutorun = 0, $g_SetDisableExtras = 0
 Global $g_SetResetMachine = 0, $g_SetProtectMachine = 0
 ;===============================================================================================================
 
@@ -231,14 +231,32 @@ Else
 	_LoggingInitialize()
 	_CheckResources($g_ReBarResFugue)
 	_CheckResources($g_ReBarResDoors)
+	_LoadSettings()
 	_StartCoreGUI()
 
 EndIf
 
 
+Func _LoadSettings()
+	$g_SetResetAutorun = Int(IniRead($g_ReBarPathIni, $g_ReBarShortName, "ResetAutorun", 1))
+	$g_SetProtectAutorun = Int(IniRead($g_ReBarPathIni, $g_ReBarShortName, "ProtectAutorun", 0))
+	$g_SetProtectMachine = Int(IniRead($g_ReBarPathIni, $g_ReBarShortName, "ProtectAutorunMachine", 1))
+	$g_SetDisableExtras = Int(IniRead($g_ReBarPathIni, $g_ReBarShortName, "DisableExtras", 0))
+EndFunc
+
+
+Func _SaveSettings()
+	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "ResetAutorun", $g_SetResetAutorun)
+	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "ProtectAutorun", $g_SetProtectAutorun)
+	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "ProtectAutorunMachine", $g_SetProtectMachine)
+	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "DisableExtras", $g_SetDisableExtras)
+EndFunc
+
+
 Func _StartCoreGUI()
 
 	Local $lblSystemProtect, $lblFirmwareHQ, $btnClose
+	_LoadSettings()
 
 	$g_ReBarCoreGui = GUICreate($g_ReBarGuiTitle, $g_ReBarFormWidth, $g_ReBarFormHeight, -1, -1, -1)
 	GUISetFont($g_ReBarFontSize, 400, -1, $g_ReBarFontName, $g_ReBarCoreGui, $CLEARTYPE_QUALITY)
@@ -267,13 +285,16 @@ Func _StartCoreGUI()
 	GUICtrlSetFont(-1, 9, -1, 4) ;Underlined
 	GUICtrlSetColor(-1, 0x186FC3)
 	GUICtrlSetCursor(-1, 0)
-	$g_ChkResetAutorun = GUICtrlCreateRadio("Reset Autorun Options", 20, 160, 230, 15)
-	; $g_ChkResetMachine = GUICtrlCreateCheckbox("Including Local Machine", 250, 160, 200, 15)
-	$g_ChkProtectAutorun = GUICtrlCreateRadio("Protect against Autorun Malware", 20, 180, 230, 15)
-	GUICtrlSetTip($g_ChkProtectAutorun, "This option disables autorun functionality!" & @CRLF & _
-			"To undo, select Reset Autorun Options.", "Warning", $TIP_WARNINGICON)
+	$g_ChkResetAutorun = GUICtrlCreateCheckbox("Reset Autorun Options", 20, 160, 230, 15, $BS_AUTORADIOBUTTON)
+	$g_ChkDoNothing = GUICtrlCreateCheckbox("Disable extras!", 250, 160, 200, 15)
+	GUICtrlSetTip($g_ChkDoNothing, "Disable reset and protect options.", _
+		"Disable extra processing.", $TIP_INFOICON)
+	$g_ChkProtectAutorun = GUICtrlCreateCheckbox("Protect against Autorun Malware", 20, 180, 230, 15, $BS_AUTORADIOBUTTON)
+	GUICtrlSetTip($g_ChkProtectAutorun, "This option disables autorun functionality for all removable drives!" & @CRLF & _
+			"Select " & Chr(34) & "Reset Autorun Options" & Chr(34) & " to enable autorun.", "Warning", $TIP_WARNINGICON)
 	$g_ChkProtectMachine = GUICtrlCreateCheckbox("Including Local Machine", 250, 180, 200, 15)
 	$g_BtnRepair = GUICtrlCreateButton("Repair DVD Drive (Icon)", 10, 210, 200, 35)
+	GUICtrlSetState($g_BtnRepair, $GUI_DEFBUTTON)
 	$g_ReBarAboutButton = GUICtrlCreateButton("About...", 240, 210, 100, 35)
 	$btnClose = GUICtrlCreateButton("Close (Esc)", 342, 210, 100, 35)
 
@@ -304,14 +325,15 @@ Func _StartCoreGUI()
 	GUICtrlSetOnEvent($g_ReBarAboutButton, "_ShowAboutDialog")
 	GUICtrlSetOnEvent($btnClose, "_ShutdownProgram")
 	GUICtrlSetOnEvent($g_ChkResetAutorun, "_SetOptions")
+	GUICtrlSetOnEvent($g_ChkDoNothing, "_SetOptions")
 	GUICtrlSetOnEvent($g_ChkProtectAutorun, "_SetOptions")
-	GUICtrlSetOnEvent($g_ChkResetAutorun, "_SetOptions")
-	GUICtrlSetOnEvent($g_ChkProtectAutorun, "_SetOptions")
+	GUICtrlSetOnEvent($g_ChkProtectMachine, "_SetOptions")
 	GUICtrlSetOnEvent($lblSystemProtect, "_OpenSystemProtection")
 	GUICtrlSetOnEvent($lblFirmwareHQ, "_OpenFirmwareHQ")
 
-	GUICtrlSetState($g_ChkResetAutorun, $GUI_CHECKED)
-	GUICtrlSetState($g_ChkResetMachine, $g_SetResetMachine)
+	GUICtrlSetState($g_ChkResetAutorun, $g_SetResetAutorun)
+	GUICtrlSetState($g_ChkDoNothing, $g_SetDisableExtras)
+	GUICtrlSetState($g_ChkProtectAutorun, $g_SetProtectAutorun)
 	GUICtrlSetState($g_ChkProtectMachine, $g_SetProtectMachine)
 
 	_SetOptions()
@@ -344,23 +366,33 @@ EndFunc   ;==>_OpenFirmwareHQ
 
 Func _SetOptions()
 
-	$g_SetResetAutorun = 0
-	$g_SetProtectAutorun = 0
+	If GUICtrlRead($g_ChkDoNothing) = $GUI_CHECKED Then
 
-	If GUICtrlRead($g_ChkResetAutorun) = $GUI_CHECKED Then
-
-		$g_SetResetAutorun = 1
-		GUICtrlSetState($g_ChkResetMachine, $GUI_ENABLE)
+		GUICtrlSetState($g_ChkResetAutorun, $GUI_DISABLE)
+		GUICtrlSetState($g_ChkProtectAutorun, $GUI_DISABLE)
 		GUICtrlSetState($g_ChkProtectMachine, $GUI_DISABLE)
+		$g_SetDisableExtras = 1
+	Else
 
-	ElseIf GUICtrlRead($g_ChkProtectAutorun) = $GUI_CHECKED Then
+		GUICtrlSetState($g_ChkResetAutorun, $GUI_ENABLE)
+		GUICtrlSetState($g_ChkProtectAutorun, $GUI_ENABLE)
+		$g_SetDisableExtras = 0
 
-		MsgBox($MB_OK + $MB_ICONWARNING, "Warning!", "This option disables autorun functionality for all removable drives!" & @CRLF & _
-				"Select " & Chr(34) & "Reset Autorun Options" & Chr(34) & " to enable autorun.")
+		If GUICtrlRead($g_ChkResetAutorun) = $GUI_CHECKED Then
+			$g_SetResetAutorun = 1
+			$g_SetProtectAutorun = 0
+			GUICtrlSetState($g_ChkProtectMachine, $GUI_DISABLE)
+		ElseIf GUICtrlRead($g_ChkProtectAutorun) = $GUI_CHECKED Then
+			$g_SetProtectAutorun = 1
+			$g_SetResetAutorun = 0
+			GUICtrlSetState($g_ChkProtectMachine, $GUI_ENABLE)
+		EndIf
 
-		$g_SetProtectAutorun = 1
-		GUICtrlSetState($g_ChkResetMachine, $GUI_DISABLE)
-		GUICtrlSetState($g_ChkProtectMachine, $GUI_ENABLE)
+		If GUICtrlRead($g_ChkProtectMachine) = $GUI_CHECKED Then
+			$g_SetProtectMachine = 1
+		Else
+			$g_SetProtectMachine = 0
+		EndIf
 
 	EndIf
 
@@ -406,39 +438,43 @@ Func _RepairDVDDrive()
 	_RegistryDelete("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E965-E325-11CE-BFC1-08002BE10318}", "UpperFilters")
 	_RegistryDelete("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E965-E325-11CE-BFC1-08002BE10318}", "LowerFilters")
 
-	If $g_SetResetAutorun = 1 Then
+	If $g_SetDisableExtras = 0 Then
 
-		_EditLoggingWrite("Resetting Autorun Settings.")
-		_RegistryWrite("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\CDRom", "AutoRun", "REG_DWORD", 1)
+		If $g_SetResetAutorun = 1 Then
 
-		_RegistryDelete("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "DontSetAutoplayCheckbox")
-		_RegistryDelete("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoAutorun")
-		_RegistryDelete("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun")
-		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "DontSetAutoplayCheckbox")
-		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoAutorun")
-		_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun")
+			_EditLoggingWrite("Resetting Autorun Settings.")
+			_RegistryWrite("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\CDRom", "AutoRun", "REG_DWORD", 1)
 
-		If @OSVersion = "WIN_XP" Then
-			_RegistryDelete("HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf", "")
-		EndIf
+			_RegistryDelete("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "DontSetAutoplayCheckbox")
+			_RegistryDelete("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoAutorun")
+			_RegistryDelete("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun")
+			_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "DontSetAutoplayCheckbox")
+			_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoAutorun")
+			_RegistryDelete("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun")
 
-	ElseIf $g_SetProtectAutorun = 1 Then
+			If @OSVersion = "WIN_XP" Then
+				_RegistryDelete("HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf", "")
+			EndIf
 
-		_RegistryWrite("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoAutorun", "REG_DWORD", 1)
+		ElseIf $g_SetProtectAutorun = 1 Then
+
+			_RegistryWrite("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoAutorun", "REG_DWORD", 1)
 
 
-		If @OSVersion = "WIN_XP" Then
-			_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf", _
-					"", "REG_SZ", "@SYS:DoesNotExist")
-		Else
+			If @OSVersion = "WIN_XP" Then
+				_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf", _
+						"", "REG_SZ", "@SYS:DoesNotExist")
+			Else
 
-			_RegistryWrite("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "DontSetAutoplayCheckbox", "REG_DWORD", 1)
-			_RegistryWrite("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", "REG_DWORD", 255)
+				_RegistryWrite("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "DontSetAutoplayCheckbox", "REG_DWORD", 1)
+				_RegistryWrite("HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", "REG_DWORD", 255)
 
-			If GUICtrlRead($g_ChkProtectMachine) = $GUI_CHECKED Then
-				_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoAutorun", "REG_DWORD", 1)
-				_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "DontSetAutoplayCheckbox", "REG_DWORD", 1)
-				_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", "REG_DWORD", 255)
+				If $g_SetProtectMachine = 1 Then
+					_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoAutorun", "REG_DWORD", 1)
+					_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "DontSetAutoplayCheckbox", "REG_DWORD", 1)
+					_RegistryWrite("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", "REG_DWORD", 255)
+				EndIf
+
 			EndIf
 
 		EndIf
@@ -460,8 +496,17 @@ Func _RepairDVDDrive()
 	If $iBootMessage = 6 Or $iBootMessage = -1 Then Shutdown(18)
 
 	_EditLoggingWrite("Reboot required!")
+	_EndLogging()
 
 EndFunc   ;==>_RepairDVDDrive
+
+
+Func _OnCoreClosing()
+
+	_SaveSettings()
+	AdlibUnRegister("_OnMainIconHover")
+
+EndFunc
 
 
 #include "Includes\ReBar_End.au3"

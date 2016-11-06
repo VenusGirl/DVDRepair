@@ -31,7 +31,7 @@ File05 = Fugue.dll
 File06 = DVDRepair.ini
 
 [Dirs]
-Dirs01 = Logging
+; Dirs01 = Logging
 
 [Sources]
 File01 = Themes\Icons\DVDRepair.ico
@@ -50,18 +50,18 @@ ScriptPath=D:\RizonesoftSDK\Concrete\DVDRepair
 ScriptFullPath=D:\RizonesoftSDK\Concrete\DVDRepair\DVDRepair.au3
 ProgramName=DVD Drive Repair
 ProgramShortName=DVDRepair
-ProgramVersion=1.0.2.638
+ProgramVersion=1.0.2.686
 ProgramMajor=1
 ProgramVersionMaintenance=2
-ProgramVersionBuild=638
+ProgramVersionBuild=686
 ProgramDescription=Repair unrecognised or missing DVD Drive
-DistributionPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\638
-DistributionPortableName=DVDRepair_638
-DistributionPortablePath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\638\DVDRepair_638
-DistributionPathSource=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\638\DVDRepair_638_Source
+DistributionPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\686
+DistributionPortableName=DVDRepair_686
+DistributionPortablePath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\686\DVDRepair_686
+DistributionPathSource=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\686\DVDRepair_686_Source
 OutputFile=DVDRepair.exe
 OutputFilePath=D:\RizonesoftSDK\Concrete\DVDRepair\DVDRepair.exe
 OutputFile64Bit=DVDRepair_X64.exe
 OutputFile64BitPath=D:\RizonesoftSDK\Concrete\DVDRepair\DVDRepair_X64.exe
-InstallScriptPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\638\DVDRepair_638_Setup.iss
-InstallOutputPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\638\DVDRepair_638_Setup.exe
+InstallScriptPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\686\DVDRepair_686_Setup.iss
+InstallOutputPath=D:\RizonesoftSDK\Concrete\DVDRepair\Distribution\686\DVDRepair_686_Setup.exe

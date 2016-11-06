@@ -84,6 +84,7 @@ Global $g_ReBarFontSize = 8.5														;~ Main GUI Font Size
 Global $g_ReBarMsgTimeout = 60														;~ Time in seconds a message should be shown before closing.
 Global $g_ReBarGuiMinWidth = 300
 Global $g_ReBarGuiMinHeight = 300
+Global $g_ReBarHasTrayIcon = False
 
 ;===============================================================================================================
 ; Splash Options
@@ -105,6 +106,7 @@ Global $g_ReBarResDoors = @ScriptDir & "\DoorsShell.dll"
 Global $g_ReBarAboutGui																;~ About Dialog
 Global $g_ReBarAboutMenu															;~ About Dialog Menu Item
 Global $g_ReBarAboutButton
+Global $g_ReBarAboutTray
 Global $g_ReBarAboutHome = "http://www.rizonesoft.com"
 Global $g_ReBarAboutCredits =	"Derick Payne (Rizonesoft), Brian J Christy (Beege), " & _
 								"G Sandler (MrCreatoR), Holger Kotsch, KaFu, LarsJ, nickston, ProgAndy, Yashied"
@@ -115,4 +117,4 @@ Global $g_ReBarAboutTwitter = "https://twitter.com/rizonesoft"
 Global $g_ReBarAboutGoogle = "https://plus.google.com/+Rizonesoftsa/posts"
 Global $g_ReBarAboutLinkedIn = "https://www.linkedin.com/in/rizonesoft"
 Global $g_ReBarAboutRSS = "http://www.rizonesoft.com/feed/"
-Global $g_ReBarAboutSupport = "http://www.rizonesoft.com"
+Global $g_ReBarAboutSupport = "http://www.rizonesoft.com/contact/"
