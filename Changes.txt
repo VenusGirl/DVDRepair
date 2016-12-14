@@ -3,6 +3,24 @@ Rizonesoft DVD Drive Repair CHANGES
 ==================================================
 
 --------------------------------------------------
+Version 1.0.2.828 (December 14, 2016)
+--------------------------------------------------
+
+- Critical Update Notification Fix.
+
+--------------------------------------------------
+Version 1.0.2.823 (November 27, 2016)
+--------------------------------------------------
+
+- Disable Extras, now called Just Repair. Makes more sense.
+- Cleaner interface. Moved About and Close into the menus.
+- New options for managing Logging and Cache.
+- Moved System Restore and Firmware update to Tools menu.
+- Removed Reboot Message Box.
+- Minor bug fixes.
+- Minor cosmetic changes.
+
+--------------------------------------------------
 Version 1.0.2.686 (November 06, 2016)
 --------------------------------------------------
 

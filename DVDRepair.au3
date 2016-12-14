@@ -8,20 +8,20 @@
 	;===============================================================================================================
 	; AutoIt3 Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_UseX64=Y										;~ (Y/N) Use AutoIt3_x64 or Aut2Exe_x64. Default=N
-	#AutoIt3Wrapper_Run_Debug_Mode=N								;~ (Y/N) Run Script with console debugging. Default=N
-	#AutoIt3Wrapper_Run_SciTE_Minimized=Y 							;~ (Y/N) Minimize SciTE while script is running. Default=N
-	#AutoIt3Wrapper_Run_SciTE_OutputPane_Minimized=N				;~ (Y/N) Minimize SciTE output pane at run time. Default=N
+	#AutoIt3Wrapper_UseX64=Y										 ;~ (Y/N) Use AutoIt3_x64 or Aut2Exe_x64. Default=N
+	#AutoIt3Wrapper_Run_Debug_Mode=N								 ;~ (Y/N) Run Script with console debugging. Default=N
+	#AutoIt3Wrapper_Run_SciTE_Minimized=Y 							 ;~ (Y/N) Minimize SciTE while script is running. Default=N
+	#AutoIt3Wrapper_Run_SciTE_OutputPane_Minimized=N				 ;~ (Y/N) Minimize SciTE output pane at run time. Default=N
 	;===============================================================================================================
 	; Tidy Settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_Tidy=Y										;~ (Y/N) Run Tidy before compilation. Default=N
-	#AutoIt3Wrapper_Tidy_Stop_OnError=N								;~ (Y/N) Continue when only Warnings. Default=Y
+	#AutoIt3Wrapper_Run_Tidy=Y										 ;~ (Y/N) Run Tidy before compilation. Default=N
+	#AutoIt3Wrapper_Tidy_Stop_OnError=N								 ;~ (Y/N) Continue when only Warnings. Default=Y
 	;#Tidy_Parameters= 												;~ Tidy Parameters...see SciTE4AutoIt3 Helpfile for options
 	;===============================================================================================================
 	; AU3Check settings
 	;===============================================================================================================
-	#AutoIt3Wrapper_Run_AU3Check=Y									;~ (Y/N) Run au3check before compilation. Default=Y
+	#AutoIt3Wrapper_Run_AU3Check=Y									 ;~ (Y/N) Run au3check before compilation. Default=Y
 	;#AutoIt3Wrapper_AU3Check_Parameters=							;~ Au3Check parameters...see SciTE4AutoIt3 Helpfile for options
 	;#AutoIt3Wrapper_AU3Check_Stop_OnWarning=						;~ (Y/N) Continue/Stop on Warnings.(Default=N)
 
@@ -53,8 +53,8 @@
 	; Target Program Resource info
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=DVD Drive Repair								 	 ;~ Comment field
-	#AutoIt3Wrapper_Res_Description=Repair unrecognised or missing DVD Drive      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=1.0.2.687
+	#AutoIt3Wrapper_Res_Description=Rizonesoft DVD Drive Repair				      	 ;~ Description field
+	#AutoIt3Wrapper_Res_Fileversion=1.0.2.829
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 			 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 			 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 			 ;~ (Y/N) Compile for high DPI. Default=N
@@ -200,6 +200,7 @@ Opt("WinWaitDelay", 250) ;~ 250 milliseconds
 ;===============================================================================================================
 ; Declarations
 ;===============================================================================================================
+Global $g_MenuFile, $g_MenuTools, $g_MenuHelp
 Global $g_ChkResetAutorun, $g_ChkProtectAutorun, $g_BtnRepair, $g_InpStatus
 Global $g_ChkResetMachine, $g_ChkProtectMachine, $g_ChkDoNothing
 Global $g_SetResetAutorun = 0, $g_SetProtectAutorun = 0, $g_SetDisableExtras = 0
@@ -225,38 +226,48 @@ If Not @AutoItX64 And @OSArch = "X64" Then
 
 Else
 
+	_ReBar_LoadPreferences()
+	_LoadOptions()
 	$g_SetResetMachine = IniRead($g_ReBarPathIni, "Options", "ResetAutorunMachine", 1)
 	$g_SetProtectMachine = IniRead($g_ReBarPathIni, "Options", "ProtectAutorunMachine", 1)
 	_SetWorkingDirectories()
 	_LoggingInitialize()
 	_CheckResources($g_ReBarResFugue)
 	_CheckResources($g_ReBarResDoors)
-	_LoadSettings()
 	_StartCoreGUI()
 
 EndIf
 
 
-Func _LoadSettings()
+Func _LoadPrefsExtended()
+	; _ReBar_LoadPreferences Hook
+EndFunc   ;==>_LoadPrefsExtended
+
+
+Func _SavePrefsExtended()
+	; _ReBar_SavePreferences Hook
+EndFunc   ;==>_SavePrefsExtended
+
+
+Func _LoadOptions()
 	$g_SetResetAutorun = Int(IniRead($g_ReBarPathIni, $g_ReBarShortName, "ResetAutorun", 1))
 	$g_SetProtectAutorun = Int(IniRead($g_ReBarPathIni, $g_ReBarShortName, "ProtectAutorun", 0))
 	$g_SetProtectMachine = Int(IniRead($g_ReBarPathIni, $g_ReBarShortName, "ProtectAutorunMachine", 1))
 	$g_SetDisableExtras = Int(IniRead($g_ReBarPathIni, $g_ReBarShortName, "DisableExtras", 0))
-EndFunc
+EndFunc   ;==>_LoadOptions
 
 
-Func _SaveSettings()
+Func _SaveOptions()
 	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "ResetAutorun", $g_SetResetAutorun)
 	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "ProtectAutorun", $g_SetProtectAutorun)
 	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "ProtectAutorunMachine", $g_SetProtectMachine)
 	IniWrite($g_ReBarPathIni, $g_ReBarShortName, "DisableExtras", $g_SetDisableExtras)
-EndFunc
+EndFunc   ;==>_SaveOptions
 
 
 Func _StartCoreGUI()
 
-	Local $lblSystemProtect, $lblFirmwareHQ, $btnClose
-	_LoadSettings()
+	_ReBar_LoadPreferences()
 
 	$g_ReBarCoreGui = GUICreate($g_ReBarGuiTitle, $g_ReBarFormWidth, $g_ReBarFormHeight, -1, -1, -1)
 	GUISetFont($g_ReBarFontSize, 400, -1, $g_ReBarFontName, $g_ReBarCoreGui, $CLEARTYPE_QUALITY)
@@ -264,6 +275,47 @@ Func _StartCoreGUI()
 	If Not @Compiled Then
 		GUISetIcon($g_ReBarIcon, 0, $g_ReBarCoreGui)
 	EndIf
+
+	Local $miFileClose, $miFileReboot
+	Local $miFilePrefs, $mnuLogging, $miLogDir, $miOpenLog
+	Local $miSysRestore, $miFirmwareHQ
+	Local $miMeteredPerm, $miUpdatePerm
+	Local $miHlpHome, $miHlpSupport
+
+	$g_MenuFile = GUICtrlCreateMenu("&File")
+	$g_MenuTools = GUICtrlCreateMenu("&Tools")
+	$g_MenuHelp = GUICtrlCreateMenu("&Help")
+
+	$miFilePrefs = GUICtrlCreateMenuItem("&Preferences", $g_MenuFile)
+	GUICtrlCreateMenuItem("", $g_MenuFile)
+	$mnuLogging = GUICtrlCreateMenu("&Logging", $g_MenuFile)
+	$miLogDir = GUICtrlCreateMenuItem("Open logging &Directory", $mnuLogging)
+	$miOpenLog = GUICtrlCreateMenuItem("Open logging &File", $mnuLogging)
+	GUICtrlCreateMenuItem("", $g_MenuFile)
+	$miFileReboot = GUICtrlCreateMenuItem("&Reboot Windows", $g_MenuFile)
+	$miFileClose = GUICtrlCreateMenuItem("&Close" & @TAB & "Esc", $g_MenuFile)
+
+	GUICtrlSetOnEvent($miFilePrefs, "_ShowPreferencesDlg")
+	GUICtrlSetOnEvent($miLogDir, "_OpenLoggingDirectory")
+	GUICtrlSetOnEvent($miOpenLog, "_OpenLoggingFile")
+	GUICtrlSetOnEvent($miFileReboot, "_ReBarRebootWindows")
+	GUICtrlSetOnEvent($miFileClose, "_ShutdownProgram")
+
+	$miSysRestore = GUICtrlCreateMenuItem("System &Restore", $g_MenuTools)
+	$miFirmwareHQ = GUICtrlCreateMenuItem("Update &Firmware (FirmwareHQ.com)", $g_MenuTools)
+
+	GUICtrlSetOnEvent($miSysRestore, "_OpenSystemProtection")
+	GUICtrlSetOnEvent($miFirmwareHQ, "_OpenFirmwareHQ")
+
+	$g_ReBarAboutMenu = GUICtrlCreateMenuItem("&About " & $g_ReBarProgName, $g_MenuHelp)
+	GUICtrlCreateMenuItem("", $g_MenuHelp)
+	$miHlpHome = GUICtrlCreateMenuItem($g_ReBarCompName & " &Home", $g_MenuHelp)
+	GUICtrlCreateMenuItem("", $g_MenuHelp)
+	$miHlpSupport = GUICtrlCreateMenuItem($g_ReBarCompName & " &Support", $g_MenuHelp)
+
+	GUICtrlSetOnEvent($g_ReBarAboutMenu, "_ShowAboutDialog")
+	GUICtrlSetOnEvent($miHlpHome, "_OpenHomePageLink")
+	GUICtrlSetOnEvent($miHlpSupport, "_OpenSupportLink")
 
 	$g_ReBarGuiIcon = GUICtrlCreateIcon($g_ReBarIcon, 99, 5, 0, 128, 128)
 	GUICtrlSetTip($g_ReBarGuiIcon, "Version " & $g_ReBarRunVersion & @CRLF & _
@@ -277,26 +329,20 @@ Func _StartCoreGUI()
 	GUICtrlCreateLabel("If your DVD Drives is missing from " & _GetWindowsVersion() & " or it is not recognized by" & _
 			" some applications, click 'Repair DVD Drives' and restart your computer." & _
 			" Remember to create a System Restore Point before you continue.", 140, 10, 285, 80)
-	$lblSystemProtect = GUICtrlCreateLabel("Click here to create a System Restore Point", 140, 100, 300, 15)
-	GUICtrlSetFont(-1, 9, -1, 4) ;Underlined
-	GUICtrlSetColor(-1, 0x186FC3)
-	GUICtrlSetCursor(-1, 0)
-	$lblFirmwareHQ = GUICtrlCreateLabel("Update Firmware (FirmwareHQ.com)", 140, 120, 300, 15)
-	GUICtrlSetFont(-1, 9, -1, 4) ;Underlined
-	GUICtrlSetColor(-1, 0x186FC3)
-	GUICtrlSetCursor(-1, 0)
+	GUICtrlCreateLabel("It may be necessary to reinstall any software designed " & _
+		"to utilize BD/DVD/CD drives after running " & $g_ReBarProgName & ".", 140, 90, 285, 65)
+	GUICtrlSetColor(-1, 0xFB650D)
 	$g_ChkResetAutorun = GUICtrlCreateCheckbox("Reset Autorun Options", 20, 160, 230, 15, $BS_AUTORADIOBUTTON)
-	$g_ChkDoNothing = GUICtrlCreateCheckbox("Disable extras!", 250, 160, 200, 15)
+	$g_ChkDoNothing = GUICtrlCreateCheckbox("Just Repair", 250, 160, 200, 15)
 	GUICtrlSetTip($g_ChkDoNothing, "Disable reset and protect options.", _
-		"Disable extra processing.", $TIP_INFOICON)
+			"Disable extra processing.", $TIP_INFOICON)
 	$g_ChkProtectAutorun = GUICtrlCreateCheckbox("Protect against Autorun Malware", 20, 180, 230, 15, $BS_AUTORADIOBUTTON)
 	GUICtrlSetTip($g_ChkProtectAutorun, "This option disables autorun functionality for all removable drives!" & @CRLF & _
 			"Select " & Chr(34) & "Reset Autorun Options" & Chr(34) & " to enable autorun.", "Warning", $TIP_WARNINGICON)
 	$g_ChkProtectMachine = GUICtrlCreateCheckbox("Including Local Machine", 250, 180, 200, 15)
-	$g_BtnRepair = GUICtrlCreateButton("Repair DVD Drive (Icon)", 10, 210, 200, 35)
+	$g_BtnRepair = GUICtrlCreateButton("Repair DVD Drives", ($g_ReBarFormWidth - 250) / 2, 210, 250, 40)
+	GUICtrlSetFont($g_BtnRepair, 10, 700, 2)
 	GUICtrlSetState($g_BtnRepair, $GUI_DEFBUTTON)
-	$g_ReBarAboutButton = GUICtrlCreateButton("About...", 240, 210, 100, 35)
-	$btnClose = GUICtrlCreateButton("Close (Esc)", 342, 210, 100, 35)
 
 	$g_ListStatus = GUICtrlCreateListView("", 10, 265, 430, 125, BitOR($LVS_REPORT, $LVS_NOCOLUMNHEADER))
 	_GUICtrlListView_SetExtendedListViewStyle($g_ListStatus, BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_DOUBLEBUFFER, _
@@ -323,13 +369,10 @@ Func _StartCoreGUI()
 
 	GUICtrlSetOnEvent($g_BtnRepair, "_RepairDVDDrive")
 	GUICtrlSetOnEvent($g_ReBarAboutButton, "_ShowAboutDialog")
-	GUICtrlSetOnEvent($btnClose, "_ShutdownProgram")
 	GUICtrlSetOnEvent($g_ChkResetAutorun, "_SetOptions")
 	GUICtrlSetOnEvent($g_ChkDoNothing, "_SetOptions")
 	GUICtrlSetOnEvent($g_ChkProtectAutorun, "_SetOptions")
 	GUICtrlSetOnEvent($g_ChkProtectMachine, "_SetOptions")
-	GUICtrlSetOnEvent($lblSystemProtect, "_OpenSystemProtection")
-	GUICtrlSetOnEvent($lblFirmwareHQ, "_OpenFirmwareHQ")
 
 	GUICtrlSetState($g_ChkResetAutorun, $g_SetResetAutorun)
 	GUICtrlSetState($g_ChkDoNothing, $g_SetDisableExtras)
@@ -423,11 +466,7 @@ Func _RepairDVDDrive()
 	GUICtrlSetState($g_BtnRepair, $GUI_DISABLE)
 	GUICtrlSetState($g_ChkResetAutorun, $GUI_DISABLE)
 	GUICtrlSetState($g_ChkProtectAutorun, $GUI_DISABLE)
-
-;~ 	If MsgBox($MB_YESNO + $MB_ICONWARNING, "Warning!", "It may be necessary to reinstall any software " & _
-;~ 		"designed to utilize BD/DVD/CD drives after running " & $g_ReBarProgName & ". For example, you may have " & _
-;~ 		"to reinstall your disc burning software. So, Please make sure you have an issue with your devices " & _
-;~ 		"before continuing." & @CRLF & @CRLF & "Would you like to continue with the repair?") == 6 Then
+	GUICtrlSetState($g_ChkDoNothing, $GUI_DISABLE)
 
 	_StartLogging("Repairing DVD Drive ...")
 	_ConfigureWindowsService("ShellHWDetection", 2)
@@ -484,18 +523,10 @@ Func _RepairDVDDrive()
 	GUICtrlSetState($g_BtnRepair, $GUI_ENABLE)
 	GUICtrlSetState($g_ChkResetAutorun, $GUI_ENABLE)
 	GUICtrlSetState($g_ChkProtectAutorun, $GUI_ENABLE)
+	GUICtrlSetState($g_ChkDoNothing, $GUI_ENABLE)
 
 	_EditLoggingWrite("Processing Finished.")
-
-	$iBootMessage = MsgBox($MB_YESNO + $MB_ICONWARNING, "Reboot required!", _
-			"You will need to reboot your computer before the settings will take effect. " & _
-			"Note that some settings might not take effect or some components might not function " & _
-			"correctly until you reboot. Your computer will reboot automatically in " & _
-			$g_ReBarMsgTimeout & " seconds." & @CRLF & @CRLF & _
-			"Would you like to reboot your computer now?", $g_ReBarMsgTimeout)
-	If $iBootMessage = 6 Or $iBootMessage = -1 Then Shutdown(18)
-
-	_EditLoggingWrite("Reboot required!")
+	_EditLoggingWrite("Reboot required! File -> Reboot Windows.")
 	_EndLogging()
 
 EndFunc   ;==>_RepairDVDDrive
@@ -503,10 +534,19 @@ EndFunc   ;==>_RepairDVDDrive
 
 Func _OnCoreClosing()
 
-	_SaveSettings()
+	_SaveOptions()
 	AdlibUnRegister("_OnMainIconHover")
 
-EndFunc
+EndFunc   ;==>_OnCoreClosing
 
 
+Func _PreferencesExtended()
+EndFunc   ;==>_PreferencesExtended
+
+
+Func _CheckPrefsChangeExtended()
+EndFunc   ;==>_CheckPrefsChangeExtended
+
+
+#include "Includes\ReBar_Preferences.au3"
 #include "Includes\ReBar_End.au3"
