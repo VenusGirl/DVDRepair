@@ -99,6 +99,8 @@ Global $g_ReBarSplashAni = @ScriptDir & "\Themes\Processing\32\Stroke.ani"
 Global $g_ReBarResFugue = @ScriptDir & "\Fugue.dll"
 Global $g_ReBarResDoors = @ScriptDir & "\DoorsShell.dll"
 Global $g_ReBarAni32Web2 = @ScriptDir & "\Themes\Processing\32\Web2.ani"
+Global $g_ReBarIconSwitch = @ScriptFullPath
+Global $g_ReBarIconSmiley = @ScriptFullPath
 
 ;===============================================================================================================
 ; About Dialog Options

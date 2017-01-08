@@ -54,7 +54,7 @@
 	;===============================================================================================================
 	#AutoIt3Wrapper_Res_Comment=DVD Drive Repair								 	 ;~ Comment field
 	#AutoIt3Wrapper_Res_Description=Rizonesoft DVD Drive Repair				      	 ;~ Description field
-	#AutoIt3Wrapper_Res_Fileversion=1.0.2.829
+	#AutoIt3Wrapper_Res_Fileversion=1.0.2.853
 	#AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					 			 ;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 	#AutoIt3Wrapper_Res_FileVersion_First_Increment=N					 			 ;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 	#AutoIt3Wrapper_Res_HiDpi=Y                      					 			 ;~ (Y/N) Compile for high DPI. Default=N
@@ -200,7 +200,7 @@ Opt("WinWaitDelay", 250) ;~ 250 milliseconds
 ;===============================================================================================================
 ; Declarations
 ;===============================================================================================================
-Global $g_MenuFile, $g_MenuTools, $g_MenuHelp
+Global $g_MenuFile, $g_MenuTrouble, $g_MenuTools, $g_MenuHelp
 Global $g_ChkResetAutorun, $g_ChkProtectAutorun, $g_BtnRepair, $g_InpStatus
 Global $g_ChkResetMachine, $g_ChkProtectMachine, $g_ChkDoNothing
 Global $g_SetResetAutorun = 0, $g_SetProtectAutorun = 0, $g_SetDisableExtras = 0
@@ -278,11 +278,12 @@ Func _StartCoreGUI()
 
 	Local $miFileClose, $miFileReboot
 	Local $miFilePrefs, $mnuLogging, $miLogDir, $miOpenLog
-	Local $miSysRestore, $miFirmwareHQ
-	Local $miMeteredPerm, $miUpdatePerm
+	Local $miSysRestore, $miDeviceMan, $miFirmwareHQ
+	Local $miHowTo, $miTroubleHard
 	Local $miHlpHome, $miHlpSupport
 
 	$g_MenuFile = GUICtrlCreateMenu("&File")
+	$g_MenuTrouble = GUICtrlCreateMenu("Trouble&shoot")
 	$g_MenuTools = GUICtrlCreateMenu("&Tools")
 	$g_MenuHelp = GUICtrlCreateMenu("&Help")
 
@@ -301,10 +302,24 @@ Func _StartCoreGUI()
 	GUICtrlSetOnEvent($miFileReboot, "_ReBarRebootWindows")
 	GUICtrlSetOnEvent($miFileClose, "_ShutdownProgram")
 
+	$miHowTo = GUICtrlCreateMenuItem("How to &Fix DVD drive not showing in Windows", $g_MenuTrouble)
+	GUICtrlSetOnEvent($miHowTo, "_OpenHowToFixDVDDrive")
+
+	Switch @OSVersion
+		Case "WIN_7", "WIN_8", "WIN_81", "WIN_10", "WIN_2008", "WIN_2008R2", "WIN_2012", "WIN_2012R2"
+			GUICtrlCreateMenuItem("", $g_MenuTrouble)
+			$miTroubleHard = GUICtrlCreateMenuItem("Troubleshoot problems using hardware", $g_MenuTrouble)
+			GUICtrlSetOnEvent($miTroubleHard, "_TroubleshootHardwareProblems")
+	EndSwitch
+
 	$miSysRestore = GUICtrlCreateMenuItem("System &Restore", $g_MenuTools)
+	GUICtrlCreateMenuItem("", $g_MenuTools)
+	$miDeviceMan = GUICtrlCreateMenuItem("Device Manager", $g_MenuTools)
+	GUICtrlCreateMenuItem("", $g_MenuTools)
 	$miFirmwareHQ = GUICtrlCreateMenuItem("Update &Firmware (FirmwareHQ.com)", $g_MenuTools)
 
 	GUICtrlSetOnEvent($miSysRestore, "_OpenSystemProtection")
+	GUICtrlSetOnEvent($miDeviceMan, "_OpenDeviceManager")
 	GUICtrlSetOnEvent($miFirmwareHQ, "_OpenFirmwareHQ")
 
 	$g_ReBarAboutMenu = GUICtrlCreateMenuItem("&About " & $g_ReBarProgName, $g_MenuHelp)
@@ -397,8 +412,23 @@ Func _StartCoreGUI()
 EndFunc   ;==>_StartCoreGUI
 
 
+Func _OpenHowToFixDVDDrive()
+	ShellExecute("http://www.rizonesoft.com/fix-dvd-drive-not-showing-in-windows-10/")
+EndFunc
+
+
+Func _TroubleshootHardwareProblems()
+	Run("msdt.exe /id DeviceDiagnostic")
+EndFunc
+
+
 Func _OpenSystemProtection()
 	Run("systempropertiesprotection")
+EndFunc   ;==>_OpenSystemProtection
+
+
+Func _OpenDeviceManager()
+	ShellExecute("devmgmt.msc")
 EndFunc   ;==>_OpenSystemProtection
 
 
@@ -520,6 +550,9 @@ Func _RepairDVDDrive()
 
 	EndIf
 
+	_EditLoggingWrite("Restoring the ATAPI disk interface")
+	_RegistryWrite("HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\atapi\Controller0", "EnumDevice1", "REG_DWORD", 1)
+
 	GUICtrlSetState($g_BtnRepair, $GUI_ENABLE)
 	GUICtrlSetState($g_ChkResetAutorun, $GUI_ENABLE)
 	GUICtrlSetState($g_ChkProtectAutorun, $GUI_ENABLE)
@@ -528,6 +561,8 @@ Func _RepairDVDDrive()
 	_EditLoggingWrite("Processing Finished.")
 	_EditLoggingWrite("Reboot required! File -> Reboot Windows.")
 	_EndLogging()
+
+	_SetOptions()
 
 EndFunc   ;==>_RepairDVDDrive
 
