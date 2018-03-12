@@ -3,7 +3,46 @@
 ==================================================
 
 --------------------------------------------------
-Version %{VERSION} (%{:MONTH:} %{DAY}, %{YEAR})
+Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
+--------------------------------------------------
+
+- Fix: Not able to select language with installed version.
+- Removed installer update check. (Could be the reason behind all the false malware detections)
+- Update files are now downloaded to the Windows Temp directory.
+- Removed the caching folder, including related functions. (Redundant)
+- No UPX Compression.
+
+## Language Changes
+
+- Added language name translations next to english name.
+- Added instructions (comments) to help with translating in language files.
+- Added support for Hungarian language.
+- Added support for Slovenian language.
+
+--------------------------------------------------
+Version 2.0.0.1016 (January 05, 2018)
+--------------------------------------------------
+
+- Fix: Changelog not displaying proper date.
+- Added French and Creek languages.
+
+--------------------------------------------------
+Version 2.0.0.1015 (December 28, 2017)
+--------------------------------------------------
+
+- Removed unnecessary _Localization_Messages() call. 
+- Fix: Dialog Parent set when Parent not active.
+- Fix: Wrong Preferences dialog icon at runtime when not compiled.
+- Changed DPI Awareness Mode to Unaware for now.
+
+--------------------------------------------------
+Version 2.0.0.1006 (December 10, 2017)
+--------------------------------------------------
+
+- Improved language file loading.
+
+--------------------------------------------------
+Version 2.0.0.1003 (December 07, 2017)
 --------------------------------------------------
 
 - Cleaner optimized code.

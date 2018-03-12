@@ -12,9 +12,7 @@ Distribute = 1
 Portable = 1
 Installation = 1
 SignInstall = 1
-Tidy = 0
 Sourcecode = 1
-GitHub = 0
 SourcePackage = 1
 UpdateFile = 1
 
@@ -26,22 +24,25 @@ Website = https://www.rizonesoft.com
 File=DVDRepair.exe
 File=DVDRepair_X64.exe
 File=DVDRepair.ini
+File=~DVDRepair.ini
 File=Docs\Changes.txt
 File=Docs\License.txt
 File=Docs\Readme.txt
 File=Language\DVDRepair\af.ini
+File=Language\DVDRepair\el.ini
 File=Language\DVDRepair\en.ini
+File=Language\DVDRepair\fr.ini
 File=Themes\Processing\32\Stroke.ani
 File=Themes\Processing\64\Globe.ani
 
 [Sources]
 
 [Links]
+GetMoreURL=https://rizone.tech/2oSeDbT
 CompanyURL=https://www.rizonesoft.com
-DownloadURL=https://goo.gl/BWhZ4G
 SupportURL=https://www.rizonesoft.com/support/
 ContactURL=https://www.rizonesoft.com/contact
-UpdateURL=https://www.rizonesoft.com/downloads/rizonesoft-sdk/
+UpdateURL=https://rizone.tech/2oSeDbT
 
 [Environment]
 ScriptPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\DVDRepair.au3
@@ -52,10 +53,10 @@ ShortName=DVDRepair
 Description=Rizonesoft DVD Drive Repair
 Type=N
 Icon=D:\Rizonesoft\SDK\Concrete\DVDRepair\Themes\Icons\DVDRepair.ico
-Version=2.0.0.1003
+Version=2.0.0.1025
 VersionMajor=2
 VersionMaintenance=0
-VersionBuild=1003
+VersionBuild=1025
 UseBeta=B
 UseX64=Y
 CompileBoth=Y
@@ -63,11 +64,11 @@ OutFile=DVDRepair.exe
 OutFileX64=DVDRepair_X64.exe
 OutFilePath=D:\Rizonesoft\SDK\Concrete\DVDRepair\DVDRepair.exe
 OutFileX64Path=D:\Rizonesoft\SDK\Concrete\DVDRepair\DVDRepair_X64.exe
-InstallScriptPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1003\DVDRepair_1003_Setup.iss
-InstallOutputPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1003\DVDRepair_1003_Setup.exe
-InstallSize=2616604
-DistributionPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1003
-DistributionName=DVDRepair_1003
-FullDistributionPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1003\DVDRepair_1003
-DistroSourceName=DVDRepair_1003_Source
-DistroSourceFullPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1003\DVDRepair_1003_Source
+InstallScriptPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1025\DVDRepair_1025_Setup.iss
+InstallOutputPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1025\DVDRepair_1025_Setup.exe
+InstallSize=4212424
+DistributionPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1025
+DistributionName=DVDRepair_1025
+FullDistributionPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1025\DVDRepair_1025
+DistroSourceName=DVDRepair_1025_Source
+DistroSourceFullPath=D:\Rizonesoft\SDK\Concrete\DVDRepair\Distribution\1025\DVDRepair_1025_Source
