@@ -30,7 +30,7 @@
 ;===============================================================================================================
 #AutoIt3Wrapper_Res_Comment=DVD Drive Repair						;~ Comment field
 #AutoIt3Wrapper_Res_Description=Rizonesoft DVD Drive Repair      	;~ Description field
-#AutoIt3Wrapper_Res_Fileversion=2.0.0.1026
+#AutoIt3Wrapper_Res_Fileversion=2.0.0.1051
 #AutoIt3Wrapper_Res_FileVersion_AutoIncrement=Y  					;~ (Y/N/P) AutoIncrement FileVersion. Default=N
 #AutoIt3Wrapper_Res_FileVersion_First_Increment=N					;~ (Y/N) AutoIncrement Y=Before; N=After compile. Default=N
 #AutoIt3Wrapper_Res_HiDpi=N                      					;~ (Y/N) Compile for high DPI. Default=N
@@ -145,7 +145,7 @@
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Firmware.ico			; 266
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Update.ico				; 267
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Home.ico				; 268
-#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Mail.ico				; 269
+#AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\Support.ico				; 269
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\GitHub.ico				; 270
 #AutoIt3Wrapper_Res_Icon_Add=Themes\Icons\Menus\About.ico				; 271
 
@@ -266,20 +266,20 @@ Global $g_iSingleton			= True
 
 ;~ Links
 
-Global $g_sUrlCompHomePage		= "https://rizone.tech/2Eoo9O1|www.rizonesoft.com"							; https://www.rizonesoft.com
-Global $g_sUrlContact			= "https://rizone.tech/2EhlYHF|www.rizonesoft.com/contact"					; https://www.rizonesoft.com/contact
-Global $g_sUrlDownloads			= "https://rizone.tech/2EWMZRO|www.rizonesoft.com/downloads"				; https://www.rizonesoft.com/downloads/
-Global $g_sUrlFacebook			= "https://rizone.tech/2nZTR92|Facebook.com/rizonesoft"						; https://www.facebook.com/rizonesoft
-Global $g_sUrlTwitter			= "https://rizone.tech/2EZE7ej|Twitter.com/Rizonesoft"						; https://twitter.com/Rizonesoft
-Global $g_sUrlGooglePlus		= "https://rizone.tech/2BqYKR1|Plus.google.com/+Rizonesoftsa" 				; https://plus.google.com/+Rizonesoftsa/posts
-Global $g_sUrlRSS				= "https://rizone.tech/2nY4SIP|www.rizonesoft.com/feed"						; https://www.rizonesoft.com/feed
-Global $g_sUrlPayPal			= "https://rizone.tech/2G8CL0g|PayPal.me/rizonesoft"						; https://www.paypal.me/rizonesoft
+Global $g_sUrlCompHomePage		= "https://rizone.tech/home|www.rizonesoft.com"								; https://www.rizonesoft.com
+Global $g_sUrlSupport			= "https://rizone.tech/support|www.rizonesoft.com/support"					; https://www.rizonesoft.com/contact
+Global $g_sUrlDownloads			= "https://rizone.tech/downloads|www.rizonesoft.com/downloads"				; https://www.rizonesoft.com/downloads/
+Global $g_sUrlFacebook			= "https://rizone.tech/facebook|Facebook.com/rizonesoft"					; https://www.facebook.com/rizonesoft
+Global $g_sUrlTwitter			= "https://rizone.tech/twitter|Twitter.com/Rizonesoft"						; https://twitter.com/Rizonesoft
+Global $g_sUrlGooglePlus		= "https://rizone.tech/google|Plus.google.com/+Rizonesoftsa" 				; https://plus.google.com/+Rizonesoftsa/posts
+Global $g_sUrlRSS				= "https://rizone.tech/feed|www.rizonesoft.com/feed"						; https://www.rizonesoft.com/feed
+Global $g_sUrlPayPal			= "https://rizone.tech/paypal|PayPal.me/rizonesoft"							; https://www.paypal.me/rizonesoft
 Global $g_sUrlGitHub			= "https://rizone.tech/2G5L6my|GitHub.com/rizonesoft/DVDRepair"				; https://github.com/rizonesoft/DVDRepair
 Global $g_sUrlGitHubIssues		= "https://rizone.tech/2HhjvOq|GitHub.com/rizonesoft/DVDRepair/issues"		; https://github.com/rizonesoft/DVDRepair/issues
 Global $g_sUrlSA				= "https://rizone.tech/2Brk7lf|Wikipedia.org/wiki/South_Africa"				; https://en.wikipedia.org/wiki/South_Africa
 Global $g_sUrlProgPage			= "https://rizone.tech/2FoEq1C|www.rizonesoft.com/downloads/dvd-drive-repair/"
 Global $g_sUrlProgUpdate		= "https://rizone.tech/2oSeDbT|www.rizonesoft.com/downloads/dvd-drive-repair/update/"
-Global $g_sUrlWinRepair         = "https://rizone.tech/2BpEm2y|www.rizonesoft.com/downloads/complete-windows-repair/"
+Global $g_sUrlWinRepair         = "https://rizone.tech/winrepair|www.rizonesoft.com/downloads/complete-windows-repair/"
 
 ;~ Path Settings
 Global $g_sWorkingDir		= @ScriptDir ;~ Working Directory
@@ -403,10 +403,10 @@ EndIf
 
 If @OSVersion = "WIN_2000" Or @OSVersion = "WIN_XPe" Or @OSVersion = "WIN_2003" Then
 	Local $iMsgBoxResult = MsgBox($MB_YESNO + $MB_ICONERROR + $MB_TOPMOST, $g_aLangMessages[3], StringFormat($g_aLangMessages[5], _
-				_Link_Split($g_sUrlContact, 2)), $g_iMsgBoxTimeOut)
+				_Link_Split($g_sUrlSupport, 2)), $g_iMsgBoxTimeOut)
 	Switch $iMsgBoxResult
 		Case $IDYES
-			ShellExecute(_Link_Split($g_sUrlContact))
+			ShellExecute(_Link_Split($g_sUrlSupport))
 			_TerminateProgram()
 		Case -1, $IDNO
 			_TerminateProgram()
@@ -474,7 +474,7 @@ Func _StartCoreGui()
 
 	Local $miFileOptions, $mnuFileLog, $miLogOpenFile, $miLogOpenRoot, $miFileReboot, $miFileClose
 	Local $miTroubleHard, $miSysRestore, $miDeviceMan, $miFirmwareHQ
-	Local $miHelpHome, $miHelpDownloads, $miHelpContact, $miHelpGitHub, $miHelpDonate, $miHelpAbout
+	Local $miHelpHome, $miHelpDownloads, $miHelpSupport, $miHelpGitHub, $miHelpDonate, $miHelpAbout
 	Local $hHeading
 
 	$g_hCoreGui = GUICreate($g_sProgramTitle, $g_iCoreGuiWidth, $g_iCoreGuiHeight, -1, 25)
@@ -514,7 +514,7 @@ Func _StartCoreGui()
 	_GuiCtrlMenuEx_CreateMenuItem("", $g_hMenuHelp)
 	$miHelpHome = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[15], $g_hMenuHelp, $g_aMenuIcons[8], $g_iMenuIconsStart + 8)
 	$miHelpDownloads = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[16], $g_hMenuHelp)
-	$miHelpContact = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[17], $g_hMenuHelp, $g_aMenuIcons[9], $g_iMenuIconsStart + 9)
+	$miHelpSupport = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[17], $g_hMenuHelp, $g_aMenuIcons[9], $g_iMenuIconsStart + 9)
 	_GuiCtrlMenuEx_CreateMenuItem("", $g_hMenuHelp)
 	$miHelpGitHub = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[18], $g_hMenuHelp, $g_aMenuIcons[10], $g_iMenuIconsStart + 10)
 	$miHelpDonate = _GuiCtrlMenuEx_CreateMenuItem($g_aLangMenus[19], $g_hMenuHelp)
@@ -534,7 +534,7 @@ Func _StartCoreGui()
 	GUICtrlSetOnEvent($g_hUpdateMenuItem, "_CheckForUpdates")
 	GUICtrlSetOnEvent($miHelpHome, "_About_HomePage")
 	GUICtrlSetOnEvent($miHelpDownloads, "_About_Downloads")
-	GUICtrlSetOnEvent($miHelpContact, "_About_Contact")
+	GUICtrlSetOnEvent($miHelpSupport, "_About_Support")
 	GUICtrlSetOnEvent($miHelpGitHub, "_About_GitHubIssues")
 	GUICtrlSetOnEvent($miHelpDonate, "_About_PayPal")
 	GUICtrlSetOnEvent($miHelpAbout, "_About_ShowDialog")
@@ -681,7 +681,7 @@ Func _SetResources()
 		$g_aMenuIcons[6]  = $g_sThemesDir & "\Icons\Menus\Firmware.ico"
 		$g_aMenuIcons[7]  = $g_sThemesDir & "\Icons\Menus\Update.ico"
 		$g_aMenuIcons[8]  = $g_sThemesDir & "\Icons\Menus\Home.ico"
-		$g_aMenuIcons[9]  = $g_sThemesDir & "\Icons\Menus\Mail.ico"
+		$g_aMenuIcons[9]  = $g_sThemesDir & "\Icons\Menus\Support.ico"
 		$g_aMenuIcons[10] = $g_sThemesDir & "\Icons\Menus\GitHub.ico"
 		$g_aMenuIcons[11] = $g_sThemesDir & "\Icons\Menus\About.ico"
 
@@ -1065,7 +1065,7 @@ EndFunc   ;==>_OpenSystemProtection
 
 
 Func _OpenFirmwareHQ()
-	ShellExecute("https://goo.gl/9yuuje")
+	ShellExecute("https://rizone.tech/2r6i92K")
 EndFunc   ;==>_OpenFirmwareHQ
 
 
@@ -1139,23 +1139,20 @@ Func _ShowPreferencesDlg()
 ;~ 	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[1]))
 ;~ 	GUICtrlCreateTabItem("") ; end tabitem definition
 
-	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[2]))
-	GUICtrlCreateGroup($g_aLangPreferences[4], 25, 50, 400, 100)
+	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[1]))
+	GUICtrlCreateGroup($g_aLangPreferences[3], 25, 50, 400, 160)
 	GUICtrlSetFont(-1, 10, 700, 2)
-	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
-	GUICtrlCreateGroup($g_aLangPreferences[5], 25, 160, 400, 160)
-	GUICtrlSetFont(-1, 10, 700, 2)
-	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[10], 35, 200, 200, 20)
+	$g_hOChkLogEnabled = GUICtrlCreateCheckbox($g_aLangPreferences[5], 35, 90, 200, 20)
 	GUICtrlSetState($g_hOChkLogEnabled, $g_iLoggingEnabled)
-	GUICtrlCreateLabel($g_aLangPreferences[11], 35, 230, 180, 20)
-	$g_hOInLogSize = GUICtrlCreateInput(Round($g_iLoggingStorage / 1024, 2), 215, 228, 100, 20)
+	GUICtrlCreateLabel($g_aLangPreferences[6], 35, 120, 180, 20)
+	$g_hOInLogSize = GUICtrlCreateInput(Round($g_iLoggingStorage / 1024, 2), 215, 118, 100, 20)
 	GUICtrlSetStyle($g_hOInLogSize, BitOr($ES_RIGHT, $ES_NUMBER))
 	GUICtrlSetFont(-1, 9, 400, 0, "Verdana")
-	GUICtrlCreateLabel("KB", 325, 230, 50, 20)
+	GUICtrlCreateLabel("KB", 325, 120, 50, 20)
 	$g_hOInLogSizeTemp = Int(GUICtrlRead($g_hOInLogSize))
-	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[12], __GetLoggingSize()), 35, 270, 200, 20)
+	$g_hOLblLogSize = GUICtrlCreateLabel(StringFormat($g_aLangPreferences[7], __GetLoggingSize()), 35, 160, 200, 20)
 	GUICtrlSetColor($g_hOLblLogSize, 0x555555)
-	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[13], 255, 265, 150, 30)
+	$g_hOBtnLogClear = GUICtrlCreateButton($g_aLangPreferences[8], 255, 155, 150, 30)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
 	GUICtrlSetOnEvent($g_hOChkLogEnabled, "__CheckPreferenceChange")
@@ -1164,8 +1161,8 @@ Func _ShowPreferencesDlg()
 	__CheckLoggingStateChanged()
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
-	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[3]))
-	GUICtrlCreateGroup($g_aLangPreferences[6], 25, 50, 400, 350)
+	GUICtrlCreateTabItem(StringFormat(" %s ", $g_aLangPreferences[2]))
+	GUICtrlCreateGroup($g_aLangPreferences[4], 25, 50, 400, 350)
 	GUICtrlSetFont(-1, 10, 700, 2)
 
 	Local $aSelLangInfo = __ISO639CodeToIndex($g_sSelectedLanguage)
@@ -1217,22 +1214,22 @@ Func _ShowPreferencesDlg()
 	Local $iSelLangItem = __FindLanguageItem(3300 + $aSelLangInfo[1])
 	_GUICtrlListView_SetItemSelected($g_hOListLanguage, $iSelLangItem, True, True)
 	_GUICtrlListView_EnsureVisible($g_hOListLanguage, $iSelLangItem)
-	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[14], $g_aLangPreferences[15]), 40, 350, 365, 35)
+	GUICtrlCreateLabel(StringFormat($g_aLangPreferences[9], $g_aLangPreferences[10]), 40, 350, 365, 35)
 	GUICtrlSetColor(-1, 0x555555)
 	GUICtrlSetFont(-1, 9)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 	GUICtrlCreateTabItem("") ; end tabitem definition
 
-	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[17], 25, 455, 200, 20)
+	$g_hOLblPrefsUpdated = GUICtrlCreateLabel($g_aLangPreferences[12], 25, 455, 200, 20)
 	GUICtrlSetColor($g_hOLblPrefsUpdated, 0x008000)
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_HIDE)
-	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[15], 210, 450, 100, 30)
+	$g_hOBtnSave = GUICtrlCreateButton($g_aLangPreferences[10], 210, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnSave, 10)
 	GUICtrlSetState($g_hOBtnSave, $GUI_FOCUS)
 	GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	GUICtrlSetOnEvent($g_hOBtnSave, "__SavePreferences")
 
-	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[16], 320, 450, 100, 30)
+	$g_hOBtnCancel = GUICtrlCreateButton($g_aLangPreferences[11], 320, 450, 100, 30)
 	GUICtrlSetFont($g_hOBtnCancel, 10)
 	GUICtrlSetOnEvent($g_hOBtnCancel, "__CloseOptionsDlg")
 
@@ -1251,8 +1248,8 @@ Func __RemoveLoggingFile()
 		_Logging_Initialize()
 	EndIf
 
-	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[12], __GetLoggingSize()))
-	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[19])
+	GUICtrlSetData($g_hOLblLogSize, StringFormat($g_aLangPreferences[7], __GetLoggingSize()))
+	GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[13])
 	GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 	GUICtrlSetState($g_hOBtnLogClear, $GUI_ENABLE)
 
@@ -1330,11 +1327,11 @@ Func __SavePreferences()
 	Local $iLangChanged = False
 
 	If $g_tSelectedLanguage <> $g_sSelectedLanguage Then
-		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[20], $g_aLangPreferences[21], 0, $g_hOptionsGui)
+		Local $iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[14], $g_aLangPreferences[15], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				IniWrite($g_sPathIni, $g_sProgShortName, "Language", $g_tSelectedLanguage)
-				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[20])
+				GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[14])
 				GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 				GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 				$iLangChanged = True
@@ -1355,7 +1352,7 @@ Func __SavePreferences()
 	IniWrite($g_sPathIni, $g_sProgShortName, "LoggingStorageSize", $g_iLoggingStorage)
 
 	If $iLangChanged = True Then
-		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[22], $g_aLangPreferences[23], 0, $g_hOptionsGui)
+		$iMsgBoxResult = MsgBox($MB_OKCANCEL + $MB_ICONINFORMATION, $g_aLangPreferences[16], $g_aLangPreferences[17], 0, $g_hOptionsGui)
 		Switch $iMsgBoxResult
 			Case 1
 				_ShutdownProgram()
@@ -1363,7 +1360,7 @@ Func __SavePreferences()
 				$iLangChanged = False
 		EndSwitch
 	Else
-		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[19])
+		GUICtrlSetData($g_hOLblPrefsUpdated, $g_aLangPreferences[13])
 		GUICtrlSetState($g_hOLblPrefsUpdated, $GUI_SHOW)
 		GUICtrlSetState($g_hOBtnSave, $GUI_DISABLE)
 	EndIf

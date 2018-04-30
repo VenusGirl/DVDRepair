@@ -6,6 +6,23 @@
 Version %{VERSION} (%{MONTH} %{DAY}, %{YEAR})
 --------------------------------------------------
 
+- Fix: Preferences dialog control positioning.
+- Change: Help -> Contact to Help -> Get Support
+- Change: Contact links to Support page links
+
+## Language Changes
+
+- Added Spanish Translation.
+- Removed Cache Language strings.
+- Removed Group_Logging language string.
+- Added Group_General = General language string.
+- Help_Contact = &Contact %{Company.Name} changed to Help_Support = &Get Support
+- About -> Label_Support = Contact Us changed to Label_Support = Get Support
+
+--------------------------------------------------
+Version 2.0.0.1025 (March 12, 2018)
+--------------------------------------------------
+
 - Fix: Not able to select language with installed version.
 - Removed installer update check. (Could be the reason behind all the false malware detections)
 - Update files are now downloaded to the Windows Temp directory.
